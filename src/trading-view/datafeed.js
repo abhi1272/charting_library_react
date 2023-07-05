@@ -1,3 +1,6 @@
+/* eslint-disable import/no-anonymous-default-export */
+// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-mixed-operators */
 import { makeApiRequest, generateSymbol, parseFullSymbol, makeCsvApiRequest } from './helpers.js';
 import { subscribeOnStream, unsubscribeFromStream } from './webStreaming.js';
 
