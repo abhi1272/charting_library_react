@@ -1,6 +1,6 @@
 
 import { io } from "socket.io-client";
-const socket = io('wss://charting-lib-backend.vercel.app/');
+const socket = io('wss://api.monetaxexchange.com:8000/');
 //const socket = io('ws://monetaxexchange.com:8000');
 const channelToSubscription = new Map();
 
