@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable no-mixed-operators */
-import { makeApiRequest, generateSymbol, parseFullSymbol, makeApiMonetaRequest } from './helpers.js';
+import { makeApiRequest, generateSymbol, parseFullSymbol, makeApiMonetaRequest, makeCsvApiRequest } from './helpers.js';
 import { subscribeOnStream, unsubscribeFromStream } from './webStreaming.js';
 
 // DatafeedConfiguration implementation
@@ -128,7 +128,11 @@ export default {
             .map(name => `${name}=${encodeURIComponent(urlParameters[name])}`)
                 .join('&');
         try {
-            const data = await makeApiMonetaRequest (`search?${query}`);
+            let data 
+            data = await makeApiMonetaRequest (`search?${query}`);
+            if(data.Data && data.Data.length === 0){
+                data = await makeCsvApiRequest()
+            }
             if (data.Response && data.Response === 'Error' || data.Data.length === 0) {
                 // "noData" should be set if there is no data in the requested period
                 onHistoryCallback([], { noData: true });

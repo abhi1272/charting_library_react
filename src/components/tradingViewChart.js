@@ -41,6 +41,7 @@ const TradingViewChart = () => {
     //Do not forget to remove the script on unmounting the component!
 
     socket.on("connect", () => {
+      socket.emit('fetch-data')
       console.log("[socket] Connected");
     });
     
