@@ -1,20 +1,8 @@
 
 import { io } from "socket.io-client";
 const socket = io('wss://charting-lib-backend.vercel.app/');
-//const socket = io('ws://monetaxexchange.com:8000');
 const channelToSubscription = new Map();
 
-socket.on('connect', () => {
-    console.log('[socket] Connected');
-});
-
-socket.on('disconnect', (reason) => {
-    console.log('[socket] Disconnected:', reason);
-});
-
-socket.on('error', (error) => {
-    console.log('[socket] Error:', error);
-});
 socket.on('m', tData => {
     //console.log('[socket] Message:', tData);
     const data = JSON.parse(tData.data);
@@ -128,4 +116,3 @@ export function unsubscribeFromStream(subscriberUID) {
         }
     }
 }
-

@@ -1,9 +1,14 @@
+/* eslint-disable no-unreachable */
 import React, { useEffect } from "react";
 import Datafeed from "../trading-view/datafeed";
 import {TradingView} from "../charting_library/charting_library.standalone";
+import { io } from "socket.io-client";
+
+const socket = io("ws://localhost:8000");
 
 const TradingViewChart = () => {
   useEffect(() => {
+    console.log('-----trading----')
     const script = document.createElement("script");
     script.type = "text/jsx";
     script.src = "%PUBLIC_URL%/charting_library/charting_library.js";
@@ -34,7 +39,20 @@ const TradingViewChart = () => {
       },
     });
     //Do not forget to remove the script on unmounting the component!
+
+    socket.on("connect", () => {
+      console.log("[socket] Connected");
+    });
+    
+    socket.on("disconnect", (reason) => {
+      console.log("[socket] Disconnected:", reason);
+    });
+    
+    socket.on("error", (error) => {
+      console.log("[socket] Error:", error);
+    });
     return () => script.remove();
+
   }, []); //eslint-disable-line
 
   return <div id="tv_chart_container"></div>;

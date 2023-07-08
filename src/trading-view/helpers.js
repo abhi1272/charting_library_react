@@ -8,6 +8,16 @@ export async function makeApiRequest(path) {
     }
 }
 
+export async function makeApiMonetaRequest(path) {
+    try {
+        const response = await fetch(`https://charting-lib-backend.vercel.app/${path}`);
+        return response.json();
+    } catch(error) {
+        console.log(error);
+        throw new Error(`CryptoCompare request error: ${error.status}`);
+    }
+}
+
 export async function makeCsvApiRequest() {
     const timestamp = Date.now();
     console.log('in csv api');
