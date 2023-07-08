@@ -5,7 +5,7 @@ import {TradingView} from "../charting_library/charting_library.standalone";
 import { io } from "socket.io-client";
 
 // const socket = io("ws://localhost:8000");
-const socket = io('wss://charting-lib-backend.vercel.app/');
+const socket = io('https://charting-lib-backend.vercel.app/');
 
 const TradingViewChart = () => {
   useEffect(() => {
