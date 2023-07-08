@@ -4,7 +4,8 @@ import Datafeed from "../trading-view/datafeed";
 import {TradingView} from "../charting_library/charting_library.standalone";
 import { io } from "socket.io-client";
 
-const socket = io("ws://localhost:8000");
+// const socket = io("ws://localhost:8000");
+const socket = io('wss://charting-lib-backend.vercel.app/',  {transports: ['websocket']});
 
 const TradingViewChart = () => {
   useEffect(() => {
